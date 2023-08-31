@@ -19,9 +19,9 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Vi
     val characterListLiveData: LiveData<State<List<Character>>> get() = _characterListLiveData
     private val _characterListLiveData: MutableLiveData<State<List<Character>>> = MutableLiveData()
 
-    fun getCharacters() {
+    fun getCharacters(pageNumber: Int) {
         viewModelScope.launch {
-            repository.callApi(1).onEach {
+            repository.callApi(pageNumber).onEach {
                 _characterListLiveData.value = it
             }.launchIn(viewModelScope)
         }
