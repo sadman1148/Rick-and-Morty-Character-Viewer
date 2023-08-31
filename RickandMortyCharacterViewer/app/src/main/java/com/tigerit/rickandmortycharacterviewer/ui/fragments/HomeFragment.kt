@@ -8,29 +8,55 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.tigerit.rickandmortycharacterviewer.R
-import com.tigerit.rickandmortycharacterviewer.data.repository.Repository
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.tigerit.rickandmortycharacterviewer.data.repository.remote.responsemodel.Character
 import com.tigerit.rickandmortycharacterviewer.databinding.FragmentHomeBinding
-import com.tigerit.rickandmortycharacterviewer.viewmodel.HomeViewModel
+import com.tigerit.rickandmortycharacterviewer.ui.RecyclerViewAdapter
+import com.tigerit.rickandmortycharacterviewer.utils.State
+import com.tigerit.rickandmortycharacterviewer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private val TAG = "HomeFragment"
     private lateinit var binding: FragmentHomeBinding
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
+    private val recyclerViewAdapter: RecyclerViewAdapter by lazy {
+        RecyclerViewAdapter(requireContext())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        homeViewModel.getGet()
-        homeViewModel.myGetResponse.observe(this, Observer {
-            Log.d("response:", it.info.toString())
-        })
+        mainViewModel.getCharacters()
+        mainViewModel.characterListLiveData.observe(this) {
+            when (it) {
+                is State.Loading -> {
+                    Log.d(TAG, "onCreate() >> loading...")
+                }
+
+                is State.Success -> {
+                    Log.d(TAG, "onCreate() >> ${it.data}")
+                    recyclerViewAdapter.addItems(it.data)
+                }
+
+                is State.Error -> {
+                    Log.d(TAG, "onCreate() >> state error: " + it.exception.message)
+                }
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.adapter = recyclerViewAdapter
     }
 
 }

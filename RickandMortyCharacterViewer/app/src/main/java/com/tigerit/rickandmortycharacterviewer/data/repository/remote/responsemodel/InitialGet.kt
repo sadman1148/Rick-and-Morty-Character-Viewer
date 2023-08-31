@@ -2,10 +2,10 @@ package com.tigerit.rickandmortycharacterviewer.data.repository.remote.responsem
 
 import com.google.gson.annotations.SerializedName
 
-data class Get(
+data class InitialGet(
     @SerializedName("info")
     val info: Info,
 
     @SerializedName("results")
-    val results: ArrayList<Result>
+    val characters: List<Character>
 )

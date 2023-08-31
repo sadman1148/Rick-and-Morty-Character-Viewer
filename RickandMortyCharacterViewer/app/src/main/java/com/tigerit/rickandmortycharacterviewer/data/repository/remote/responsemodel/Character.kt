@@ -2,7 +2,7 @@ package com.tigerit.rickandmortycharacterviewer.data.repository.remote.responsem
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class Character(
     @SerializedName("id")
     val id: Int,
 
@@ -31,7 +31,7 @@ data class Result(
     val image: String,
 
     @SerializedName("episode")
-    val episode: ArrayList<String>,
+    val episode: List<String>,
 
     @SerializedName("url")
     val url: String,
