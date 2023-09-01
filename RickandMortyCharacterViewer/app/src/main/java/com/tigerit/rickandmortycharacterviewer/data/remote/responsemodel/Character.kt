@@ -1,4 +1,4 @@
-package com.tigerit.rickandmortycharacterviewer.data.repository.remote.responsemodel
+package com.tigerit.rickandmortycharacterviewer.data.remote.responsemodel
 
 import com.google.gson.annotations.SerializedName
 

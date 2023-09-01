@@ -4,8 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.tigerit.rickandmortycharacterviewer.data.repository.remote.api.APIService
-import com.tigerit.rickandmortycharacterviewer.data.repository.remote.api.APIUrl
+import com.tigerit.rickandmortycharacterviewer.data.remote.api.APIService
+import com.tigerit.rickandmortycharacterviewer.data.remote.api.APIUrl
+import com.tigerit.rickandmortycharacterviewer.utils.Utility
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,7 +39,7 @@ object NetworkModule {
             .cache(Cache(context.cacheDir, (5 * 1024 * 1024).toLong()))
             .addInterceptor { chain ->
                 var request = chain.request()
-                request = if (hasInternet(context))
+                request = if (Utility.hasInternet(context))
                     request.newBuilder().header("Cache-Control", "public, max-age=" + 5).build()
                 else
                     request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build()
@@ -46,28 +47,5 @@ object NetworkModule {
             }
             .build()
         return okHttpClient
-    }
-
-    private fun hasInternet(context: Application): Boolean {
-
-        // register activity with the connectivity manager service
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        // Returns a Network object corresponding to the currently active default data network
-        val network = connectivityManager.activeNetwork ?: return false
-
-        // Representation of the capabilities of an active network
-        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-
-        return when {
-            // Indicates this network uses a Wi-Fi transport or WiFi has network connectivity
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-
-            // Indicates this network uses a Cellular transport or Cellular has network connectivity
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-
-            // else return false
-            else -> false
-        }
     }
 }

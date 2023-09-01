@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">Rick and Morty Character Viewer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="char_name">Name: %1$s</string>
+    <string name="char_species">Species: %1$s</string>
+    <string name="char_location">Location: %1$s</string>
+    <string name="char_gender">Gender: %1$s</string>
+    <string name="char_origin">Origin: %1$s</string>
+    <string name="char_status">Status: %1$s</string>
+    <string name="featured_in">Featured in:</string>
+    <string name="character_viewer">Character Viewer</string>
+    <string name="no_internet_connection">No Internet Connection!</string>
+    <string name="try_again">Please connect to the internet and try again.</string>
+    <string name="ok">OK</string>
+    <string name="powered_by">Powered by TigerIT</string>
 </resources>

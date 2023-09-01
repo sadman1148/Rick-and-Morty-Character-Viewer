@@ -3,12 +3,16 @@ package com.tigerit.rickandmortycharacterviewer.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.tigerit.rickandmortycharacterviewer.data.repository.remote.responsemodel.Character
+import com.google.gson.Gson
+import com.tigerit.rickandmortycharacterviewer.R
+import com.tigerit.rickandmortycharacterviewer.data.remote.responsemodel.Character
 import com.tigerit.rickandmortycharacterviewer.databinding.RecyclerItemBinding
 
 class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -39,6 +43,11 @@ class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(characterList[position], context)
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("data", Gson().toJson(characterList[position]))
+            it.findNavController().navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+        }
     }
 
     override fun getItemCount() = characterList.size
