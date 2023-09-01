@@ -1,39 +1,47 @@
 # Rick and Morty Character Viewer
-
-<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/f0b11193-8b7c-4c90-9142-6999848f4d6a" width="250" alt="App Icon">
+<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/f9a0c6c8-e71f-4e2d-9efe-efc496fbff86" width="250" alt="App Icon">
 
 ## Overview
-
-The **Rick and Morty Character Viewer** is an information viewer app that does a very simple task of fetching data from an API and viewing it on the UI. It makes use of some of the latest and most popular libraries that are commonly used in the industry by most devs out there.
+The **Rick and Morty Character Viewer** is a very plain information viewer app that does a very simple task of fetching data from an API and viewing it on the UI. It makes use of some of the latest and most popular libraries that are commonly used in the industry by most devs out there. This project was done to learn and test out these libraries.
 
 ### Key Features
-
-- Fetches data from the [Rick and Morty API](https://rickandmortyapi.com/) using [Retrofit](https://square.github.io/retrofit/)
-- Caches the data with [OkHttp3](https://square.github.io/okhttp/)
-- Uses [Livedata](https://developer.android.com/topic/libraries/architecture/livedata) to observe changes in dataset and populates RecyclerView
+- Fetches data from the [Rick and Morty API](https://rickandmortyapi.com/)
+- Caches the data
 - Updates UI by fetching data from a ViewModel that in turn receives it from a Repository
-- Uses [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation) Component to navigate
-- Implements [Hilt and Dagger](https://developer.android.com/training/dependency-injection/hilt-android) for dependency injection
+- Implements dependency injection
 - Uses Paging
-- Shows images with [Glide](https://github.com/bumptech/glide)
+
+### Tech stack
+- [Kotlin](https://kotlinlang.org/)
+- [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+- [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) - Flow sends a stream of data that can be computed asynchronously.
+- [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+- [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Provides lifecyle event of an activity or fragment.
+- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
+- [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started)
+- [Data Binding](https://developer.android.com/topic/libraries/data-binding)
+- [Retrofit](https://github.com/square/retrofit) - Provides REST api communication.
+- [OkHttp](http://square.github.io/okhttp/)
+- [Gson](https://github.com/google/gson) - Converts Java Objects to JSON and vice versa.
+- [Glide](https://github.com/bumptech/glide) - Glide is a fast and efficient image loading library for Android
 
 ## Screenshots
+<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/9c7ab424-9e8c-49e8-9af4-3b80d80076f3" width="200" alt="Splash Screen">
+<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/6ac2850e-87e4-46f8-94c7-da2d3c516ad1" width="200" alt="Character List Screen">
+<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/09f8b2c3-b557-4b2c-a52f-140d283593ff" width="200" alt="Character Details Screen">
 
-<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/da6b624c-21af-4740-8370-62a7e8a73b61" width="300" alt="Splash Screen">
-<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/0652dbe9-c93e-4917-911e-66c31865d87a" width="300" alt="Character List Screen">
-<img src="https://github.com/sadman1148/Rick-and-Morty-Character-Viewer/assets/71433330/17c3da5d-5741-47bd-80e3-1b244c9fc7db" width="300" alt="Character Details Screen">
 
 ## Getting Started
-
 These instructions will help you set up and run the project on your local machine for development and testing purposes.
 
 ### Prerequisites
-
 - [Android Studio](https://developer.android.com/studio)
 - Required [libraries](https://developer.android.com/studio/install#64bit-libs) for 64-bit Linux machines
+- Android SDK
+- Java 1.8
 
 ### Installation
-
 1. Clone the repository by pasting the following command into your terminal:
 ```bash
    git clone git@github.com:sadman1148/Rick-and-Morty-Character-Viewer.git
@@ -43,12 +51,11 @@ These instructions will help you set up and run the project on your local machin
 4. Run the app.
 
 ### Usage
-
 1. Browse the character list.
 2. Tap on any character to see details about that character.
 
-## Contribution
 
+## Contribution
 I welcome contributions from the community. To contribute to this project, follow these steps:
 
 1. Fork this repository.
@@ -57,6 +64,6 @@ I welcome contributions from the community. To contribute to this project, follo
 4. Push to your branch: git push origin feature/your-feature-name
 5. Create a pull request on this repository.
 
-## Contact
 
+## Contact
 Feel free to contact me on my [LinkedIn](https://www.linkedin.com/in/sadman-alam-impulse/) profile.
